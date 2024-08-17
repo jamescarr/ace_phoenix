@@ -4,12 +4,13 @@ defmodule AceComponent.MixProject do
   def project do
     [
       app: :ace_phoenix,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      description: "A phoenix component for the Ace code editor"
+      description: "A phoenix component for the Ace code editor",
+      assets_path: "priv/static"
     ]
   end
 
@@ -31,7 +32,8 @@ defp package do
     [
       maintainers: ["James Carr"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/jamescarr/ace_phoenix"}
+      links: %{"GitHub" => "https://github.com/jamescarr/ace_phoenix"},
+      files: ~w(lib priv .formatter.exs mix.exs README.md LICENSE)
     ]
   end
 end

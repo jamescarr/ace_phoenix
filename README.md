@@ -4,7 +4,7 @@ A Phoenix component for integrating the Ace code editor into your Phoenix applic
 
 ## Installation
 
-Add `ace_phoenix` to your list of dependencies in `mix.exs`:
+1. Add `ace_phoenix` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -14,12 +14,19 @@ def deps do
 end
 ```
 
+2. Run `mix deps.get` to install the package.
+
+3. Install the required npm packages:
+
+```bash
+npm install --save ace-builds
+```
 ## Usage
 
 1. In your `app.js`, import and set up the AceEditorHook:
 
 ```javascript
-import { AceEditorHook } from "ace_phoenix";
+import { AceEditorHook } from "../vendor/ace_phoenix";
 
 let Hooks = {};
 Hooks.AceEditor = AceEditorHook;
@@ -41,6 +48,13 @@ end
 def handle_event("ace-change", %{"content" => content}, socket) do
   {:noreply, assign(socket, content: content)}
 end
+```
+
+3. Ensure your `config/config.exs` includes the static path for ace_phoenix:
+
+```elixir
+config :ace_phoenix, AcePhoenixWeb.Endpoint,
+  static_paths: ~w(../deps/ace_phoenix/priv/static)
 ```
 
 ## License
